@@ -1,5 +1,6 @@
 from typing import Type, Union, Literal
 
+# noinspection PyProtectedMember
 from pydantic import (
     BaseModel as PydanticModel,
     validate_model,
