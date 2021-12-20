@@ -28,7 +28,7 @@ class CreateMixin(object):
         )
         validated_params: dict = await self.validator(
             data=query_params,
-            source='query_params',
+            source="query_params",
         )
         processed_data: dict = await self.processor.post(
             validated_data=validated_body | validated_params,
@@ -46,7 +46,7 @@ class ReadMixin(object):
 
         validated_data: dict = await self.validator(
             data=query_params,
-            source='query_params',
+            source="query_params",
         )
         processed_data: list = await self.processor.get(
             validated_data=validated_data,
