@@ -25,7 +25,7 @@ pip install starlette-fancy[starlette-marshal]
 to install all packages at once:
 
 ```bash
-pip install starlette-marshal[full]
+pip install starlette-fancy[full]
 ```
 
 ## Validators
