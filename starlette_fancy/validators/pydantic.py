@@ -1,11 +1,10 @@
 from typing import Type, Union, Literal
 
-# noinspection PyProtectedMember
 from pydantic import (
     BaseModel as PydanticModel,
     validate_model,
     ValidationError,
-    MissingError,
+    MissingError,  # noqa
 )
 
 from starlette_fancy.validators import Validator
