@@ -31,9 +31,9 @@ def validate_input_and_raise(
 
 
 class PydanticValidator(Validator):
-    params_model: Type[PydanticModel]
-    request_model: Type[PydanticModel]
-    response_model: Type[PydanticModel]
+    request_query_model: Type[PydanticModel]
+    request_body_model: Type[PydanticModel]
+    response_body_model: Type[PydanticModel]
 
     async def __call__(
         self,
@@ -43,22 +43,25 @@ class PydanticValidator(Validator):
         partial: bool = False,
     ) -> dict:
         if response:
-            if hasattr(self, "response_model"):
+            if hasattr(self, "response_body_model"):
                 validate_input_and_raise(
-                    model=self.response_model,
+                    model=self.response_body_model,
                     input_data=data,
                     partial=partial,
                 )
         else:
-            if hasattr(self, "request_model") and source == "body":
+            if hasattr(self, "request_body_model") and source == "body":
                 validate_input_and_raise(
-                    model=self.request_model,
+                    model=self.request_body_model,
                     input_data=data,
                     partial=partial,
                 )
-            if hasattr(self, "params_model") and source == "query_params":
+            if (
+                hasattr(self, "request_query_model")
+                and source == "query_params"
+            ):
                 validate_input_and_raise(
-                    model=self.params_model,
+                    model=self.request_query_model,
                     input_data=data,
                     partial=partial,
                 )
